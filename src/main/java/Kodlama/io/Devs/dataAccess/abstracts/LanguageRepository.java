@@ -6,4 +6,8 @@ import java.util.List;
 
 public interface LanguageRepository {
     List<Language> getAll();
+    void save(Language language);
+
+    void delete(int languageId);
+
 }

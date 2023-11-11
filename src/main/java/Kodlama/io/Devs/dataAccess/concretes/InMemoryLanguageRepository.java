@@ -22,4 +22,13 @@ public class InMemoryLanguageRepository implements LanguageRepository {
     public List<Language> getAll() {
         return languages;
     }
+    @Override
+    public void save(Language language){
+        languages.add(language);
+    }
+
+    @Override
+    public void delete(int languageId){
+        languages.removeIf(language -> language.getId() == languageId);
+    }
 }
