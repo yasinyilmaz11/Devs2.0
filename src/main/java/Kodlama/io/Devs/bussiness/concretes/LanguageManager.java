@@ -21,4 +21,25 @@ public class LanguageManager implements LanguageService {
     public List<Language> getAll() {
         return languageRepository.getAll();
     }
+
+    public List<Language> addLanguage(Language newLanguage) throws Exception {
+        if (newLanguage.getName().isEmpty() || newLanguage.getName().isBlank()){
+            throw new Exception("Hata: Dil ismi boş bırakılamaz!");
+        }
+        List<Language> oldData = getAll();
+        boolean isDuplicate = oldData.stream()
+                .anyMatch(memoryLanguage -> memoryLanguage.getName().equals(newLanguage.getName()));
+
+        if (isDuplicate) {
+            throw new Exception("Hata: Aynı isimde kayıt veritabanında mevcut!");
+        } else {
+            languageRepository.save(newLanguage);
+        }
+
+        return getAll();
+    }
+
+    public void delete(int languageId) {
+        languageRepository.delete(languageId);
+    }
 }

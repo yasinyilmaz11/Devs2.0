@@ -6,4 +6,8 @@ import java.util.List;
 
 public interface LanguageService {
     List<Language> getAll();
+
+    List<Language> addLanguage(Language language) throws Exception;
+
+    void delete(int languageId);
 }

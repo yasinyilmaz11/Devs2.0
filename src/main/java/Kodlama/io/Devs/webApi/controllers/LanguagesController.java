@@ -2,9 +2,8 @@ package Kodlama.io.Devs.webApi.controllers;
 
 import Kodlama.io.Devs.bussiness.abstracts.LanguageService;
 import Kodlama.io.Devs.entities.concretes.Language;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,5 +19,15 @@ public class LanguagesController {
     @GetMapping("/getAll")
     public List<Language> getAll(){
         return languageService.getAll();
+    }
+
+    @PostMapping ("/addLanguage")
+    public List<Language> addLanguage(@RequestBody Language language) throws Exception {
+        return languageService.addLanguage(language);
+    }
+
+    @DeleteMapping("/delete")
+    public void delete(@RequestParam int languageId){
+        languageService.delete(languageId);
     }
 }
